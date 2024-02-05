@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bftms41bljx0x"]
+[gd_scene load_steps=6 format=3 uid="uid://bftms41bljx0x"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_c3hd2"]
 [ext_resource type="PackedScene" uid="uid://c47wup4wgax6b" path="res://player.tscn" id="1_usg21"]
 [ext_resource type="PackedScene" uid="uid://dv50omavhxi4s" path="res://enemy.tscn" id="2_tekom"]
+[ext_resource type="PackedScene" uid="uid://32m0hm67r341" path="res://hud.tscn" id="4_pkf0n"]
 
 [sub_resource type="Curve2D" id="Curve2D_m5gk5"]
 _data = {
@@ -33,7 +34,10 @@ curve = SubResource("Curve2D_m5gk5")
 
 [node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
 
+[node name="HUD" parent="." instance=ExtResource("4_pkf0n")]
+
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
