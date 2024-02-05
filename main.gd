@@ -13,6 +13,7 @@ func _process(delta):
 	pass
 
 func new_game():
+	$Music.play()
 	get_tree().call_group("enemies", "queue_free")
 	score = 0
 	$HUD.update_score(score)
@@ -21,6 +22,8 @@ func new_game():
 	$StartTimer.start()
 
 func game_over():
+	$Music.stop()
+	$DeathSound.play()
 	$ScoreTimer.stop()
 	$EnemyTimer.stop()
 	$HUD.show_game_over()
