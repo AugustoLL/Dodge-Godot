@@ -13,6 +13,7 @@ func _process(delta):
 	pass
 
 func new_game():
+	get_tree().call_group("enemies", "queue_free")
 	score = 0
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
